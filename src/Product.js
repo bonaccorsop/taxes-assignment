@@ -50,12 +50,12 @@ module.exports = {
 
       // eventually apply basic taxes
       if (![typeMedical, typeBooks, typeFood].includes(this.data.type)) {
-        taxes += round((price * 10) / 100, 5) * qty;
+        taxes += round(price * 0.1, 5) * qty;
       }
 
       // eventually apply import taxes
       if (this.data.isImported) {
-        taxes += round((price * 5) / 100, 5) * qty;
+        taxes += round(price * 0.05, 5) * qty;
       }
 
       return round(taxes);
