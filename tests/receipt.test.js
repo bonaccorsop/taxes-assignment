@@ -3,10 +3,12 @@
 const Receipt = require('../src/Receipt');
 
 const {
-  typeBooks,
-  typeFood,
-  typeMedical,
-  typeOthers,
+  types: {
+    typeBooks,
+    typeFood,
+    typeMedical,
+    typeOthers,
+  },
 } = require('../src/Product');
 
 function receiptMacro(products, salesTaxes, total) {
@@ -15,7 +17,6 @@ function receiptMacro(products, salesTaxes, total) {
   expect(receipt.getSalesTaxes()).toBe(salesTaxes);
   expect(receipt.getTotal()).toBe(total);
 }
-
 
 test('Test Receipt 1', () => receiptMacro([
   {

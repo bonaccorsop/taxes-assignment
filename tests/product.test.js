@@ -2,14 +2,41 @@
 
 const {
   Product,
-  typeBooks,
-  typeFood,
-  typeMedical,
-  typeOthers,
+  types: {
+    typeBooks,
+    typeFood,
+    typeMedical,
+    typeOthers,
+  }
 } = require('../src/Product');
 
+test('Test InvalidProductQuantityException on not numeric quantity', () => {
+  const call = () => new Product({ price: 1.25, qty: 'myQuantity' });
+  expect(call).toThrow('Invalid product quantity!');
+});
 
-test('Test Imported chocolate', () => {
+test('Test InvalidProductQuantityException on not integer quantity', () => {
+  const call = () => new Product({ price: 1.25, qty: 1.23 });
+  expect(call).toThrow('Invalid product quantity!');
+});
+
+test('Test InvalidProductQuantityException on negative quantity', () => {
+  const call = () => new Product({ price: 1.45, qty: -1 });
+  expect(call).toThrow('Invalid product quantity!');
+});
+
+test('Test InvalidProductPriceException on not numeric price', () => {
+  const call = () => new Product({ price: 'tooExpansive' });
+  expect(call).toThrow('Invalid product price!');
+});
+
+test('Test InvalidProductPriceException on negative price', () => {
+  const call = () => new Product({ price: -18.34 });
+  expect(call).toThrow('Invalid product price!');
+});
+
+
+test('Test taxes for "Imported chocolate"', () => {
   const prod = new Product({
     name: 'imported box of chocolates',
     price: 10.00,
@@ -20,7 +47,7 @@ test('Test Imported chocolate', () => {
 });
 
 
-test('Test imported bottle of perfume', () => {
+test('Test taxes for "imported bottle of perfume"', () => {
   const prod = new Product({
     name: 'imported bottle of perfume',
     price: 47.50,
@@ -31,7 +58,7 @@ test('Test imported bottle of perfume', () => {
 });
 
 
-test('Test imported bottle of vodka', () => {
+test('Test taxes for "imported bottle of vodka"', () => {
   const prod = new Product({
     name: 'imported bottle of vodka',
     price: 27.99,
@@ -41,7 +68,7 @@ test('Test imported bottle of vodka', () => {
   expect(prod.resolveSalesTaxes()).toBe(4.2);
 });
 
-test('Test bottle of vodka NOT IMPORTED', () => {
+test('Test taxes for "bottle of vodka NOT IMPORTED"', () => {
   const prod = new Product({
     name: 'imported bottle of perfume',
     price: 18.99,
@@ -51,7 +78,7 @@ test('Test bottle of vodka NOT IMPORTED', () => {
   expect(prod.resolveSalesTaxes()).toBe(1.9);
 });
 
-test('Test packet of headache pills', () => {
+test('Test taxes for "packet of headache pills"', () => {
   const prod = new Product({
     name: 'imported bottle of perfume',
     price: 9.75,
@@ -61,7 +88,7 @@ test('Test packet of headache pills', () => {
   expect(prod.resolveSalesTaxes()).toBe(0);
 });
 
-test('Test 3 imported box of chocolates', () => {
+test('Test taxes for "3 imported box of chocolates"', () => {
   const prod = new Product({
     name: 'imported box of chocolates',
     price: 11.25,

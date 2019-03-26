@@ -1,17 +1,9 @@
-
-const { isEmpty } = require('lodash');
+const { round } = require('./utils');
 
 const typeBooks = Symbol('books');
 const typeFood = Symbol('food');
 const typeMedical = Symbol('medical');
 const typeOthers = Symbol('others');
-
-class EmptyProductNameException extends Error {
-  constructor() {
-    super();
-    this.message = 'Product name cannot be empty!';
-  }
-}
 
 class InvalidProductQuantityException extends Error {
   constructor() {
@@ -27,15 +19,6 @@ class InvalidProductPriceException extends Error {
   }
 }
 
-function round(value, roundUp = 1) {
-  let rounded = Math.round(value * 100);
-  const mod = rounded % roundUp;
-  if (mod !== 0) {
-    rounded += roundUp - mod;
-  }
-  return rounded / 100;
-}
-
 module.exports = {
   Product: class Product {
     constructor(data) {
@@ -46,18 +29,13 @@ module.exports = {
         ...data,
       };
 
-      // validate product name
-      if (isEmpty(this.data.name)) {
-        throw new EmptyProductNameException();
-      }
-
       // validate product qty
-      if (!Number.isInteger(this.data.qty) && this.data.qty <= 0) {
+      if (!Number.isInteger(this.data.qty) || this.data.qty <= 0) {
         throw new InvalidProductQuantityException();
       }
 
       // validate product price
-      if (Number.isNaN(this.data.price) && this.data.price <= 0) {
+      if (isNaN(this.data.price) || this.data.price < 0) {
         throw new InvalidProductPriceException();
       }
     }
@@ -83,9 +61,10 @@ module.exports = {
       return round(taxes);
     }
   },
-  typeBooks,
-  typeFood,
-  typeMedical,
-  typeOthers,
-  round,
+  types: {
+    typeBooks,
+    typeFood,
+    typeMedical,
+    typeOthers,
+  },
 };

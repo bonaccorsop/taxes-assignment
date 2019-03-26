@@ -1,7 +1,5 @@
-const {
-  Product,
-  round,
-} = require('./Product');
+const { round } = require('./utils');
+const { Product } = require('./Product');
 
 module.exports = class Receipt {
   constructor() {
