@@ -4,7 +4,7 @@
   "description": "This is an assignment",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
+    "start": "npm test",
     "test": "node_modules/jest/bin/jest.js tests"
   },
   "author": {
