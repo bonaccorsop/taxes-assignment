@@ -45,17 +45,20 @@ module.exports = {
     }
 
     resolveSalesTaxes() {
-      const { price, qty } = this.data;
+      const { price, qty, type } = this.data;
       let taxes = 0;
 
+      // this formula apply taxes for each single product and then multiply for the qty
+      const applyTaxes = taxPercentage => round(price * taxPercentage, 5) * qty;
+
       // eventually apply basic taxes
-      if (![typeMedical, typeBooks, typeFood].includes(this.data.type)) {
-        taxes += round(price * 0.1, 5) * qty;
+      if (type === typeOthers) {
+        taxes += applyTaxes(0.1);
       }
 
       // eventually apply import taxes
       if (this.data.isImported) {
-        taxes += round(price * 0.05, 5) * qty;
+        taxes += applyTaxes(0.05);
       }
 
       return round(taxes);
