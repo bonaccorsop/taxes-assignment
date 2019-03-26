@@ -14,7 +14,6 @@ const {
 function receiptMacro(products, salesTaxes, total) {
   const receipt = new Receipt();
   products.forEach((prod) => { receipt.addProduct(prod); });
-  expect(receipt.getSalesTaxes()).toBe(salesTaxes);
   expect(receipt.getTotal()).toBe(total);
 }
 

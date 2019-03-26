@@ -4,7 +4,7 @@
   "description": "This is an assignment",
   "scripts": {
     "start": "npm test",
-    "test": "node_modules/jest/bin/jest.js tests"
+    "test": "node_modules/jest/bin/jest.js --coverage"
   },
   "author": {
     "name": "Pietro Bonaccorso",
