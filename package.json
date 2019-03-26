@@ -1,6 +1,6 @@
 {
   "name": "taxes-assignment",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is an assignment",
   "scripts": {
     "start": "npm test",
