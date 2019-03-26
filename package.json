@@ -1,8 +1,7 @@
 {
   "name": "taxes-assignment",
   "version": "1.0.0",
-  "description": "This is an assignment",
-  "main": "index.js",
+  "description": "This is an assignment"
   "scripts": {
     "start": "npm test",
     "test": "node_modules/jest/bin/jest.js tests"
