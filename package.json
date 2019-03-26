@@ -1,0 +1,30 @@
+{
+  "name": "taxes-assignment",
+  "version": "1.0.0",
+  "description": "This is an assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "node_modules/jest/bin/jest.js tests"
+  },
+  "author": {
+    "name": "Pietro Bonaccorso",
+    "email": "bonaccorso.p@gmail.com",
+    "url": "https://about.me/bonaccorsop"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonaccorsop/taxes-assignment"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.9",
+    "jest": "^24.5.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
