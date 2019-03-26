@@ -24,7 +24,7 @@ If you don't want to use docker and you have already installed NodeJS in your ma
 ````
 git clone https://github.com/bonaccorsop/taxes-assignment
 npm --prefix taxes-assignment install
-npm --prefix taxes-assignment run test
+npm --prefix taxes-assignment test
 ````
 
 
