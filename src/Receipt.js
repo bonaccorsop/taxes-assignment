@@ -3,7 +3,6 @@ const { Product } = require('./Product');
 
 module.exports = class Receipt {
   constructor() {
-    this.total = 0;
     this.products = [];
   }
 
